@@ -45,7 +45,7 @@ export const signup = async (req: Request, res: Response) => {
       expires: new Date(Date.now() + 24 * 60 * 60 * 1000), // ১ দিন মেয়াদ
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production', // প্রোডাকশনে true, লোকালহোস্টে false
-      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax' as const,
+      sameSite: (process.env.NODE_ENV === 'production' ? 'none' : 'lax') as 'none' | 'lax' | 'strict',
     };
 
     res.status(201).cookie('token', token, options).json({
@@ -126,7 +126,7 @@ export const login = async (req: Request, res: Response) => {
       expires: new Date(Date.now() + 24 * 60 * 60 * 1000), // ১ দিন মেয়াদ
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax' as const,
+      sameSite: (process.env.NODE_ENV === 'production' ? 'none' : 'lax') as 'none' | 'lax' | 'strict',
     };
 
     res.status(200).cookie('token', token, options).json({

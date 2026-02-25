@@ -28,11 +28,10 @@ const ForumCategorySchema = new Schema({
 });
 
 // নাম থেকে স্লাগ তৈরি করার জন্য প্রি-সেভ হুক
-ForumCategorySchema.pre('save', function(next: (err?: Error) => void) {
+ForumCategorySchema.pre('save', function() {
   if (this.isModified('name')) {
     this.slug = this.name.split(' ').join('-').toLowerCase();
   }
-  next();
 });
 
 export default mongoose.model<IForumCategory>('ForumCategory', ForumCategorySchema);
