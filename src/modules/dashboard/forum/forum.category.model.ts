@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document } from 'mongoose';
+import mongoose, { Schema, Document } from "mongoose";
 
 export interface IForumCategory extends Document {
   name: string;
@@ -7,31 +7,37 @@ export interface IForumCategory extends Document {
   createdAt: Date;
 }
 
-const ForumCategorySchema = new Schema({
-  name: { 
-    type: String, 
-    required: [true, 'Category name is required'], 
-    trim: true,
-    unique: true 
+const ForumCategorySchema = new Schema(
+  {
+    name: {
+      type: String,
+      required: [true, "Category name is required"],
+      trim: true,
+      unique: true,
+    },
+    description: {
+      type: String,
+      trim: true,
+    },
+    slug: {
+      type: String,
+      lowercase: true,
+      trim: true,
+    },
   },
-  description: { 
-    type: String,
-    trim: true 
+  {
+    timestamps: true,
   },
-  slug: { 
-    type: String, 
-    lowercase: true, 
-    trim: true 
-  }
-}, { 
-  timestamps: true 
-});
+);
 
 // নাম থেকে স্লাগ তৈরি করার জন্য প্রি-সেভ হুক
-ForumCategorySchema.pre('save', function() {
-  if (this.isModified('name')) {
-    this.slug = this.name.split(' ').join('-').toLowerCase();
+ForumCategorySchema.pre("save", function () {
+  if (this.isModified("name")) {
+    this.slug = this.name.split(" ").join("-").toLowerCase();
   }
 });
 
-export default mongoose.model<IForumCategory>('ForumCategory', ForumCategorySchema);
+export default mongoose.model<IForumCategory>(
+  "ForumCategory",
+  ForumCategorySchema,
+);

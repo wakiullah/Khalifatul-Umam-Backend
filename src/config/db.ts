@@ -7,7 +7,9 @@ const connectDB = async (): Promise<void> => {
   try {
     const mongoUri = process.env.DATABASE_URL || process.env.MONGO_URI;
     if (!mongoUri) {
-      throw new Error("DATABASE_URL or MONGO_URI is not defined in environment variables");
+      throw new Error(
+        "DATABASE_URL or MONGO_URI is not defined in environment variables",
+      );
     }
     const conn = await mongoose.connect(mongoUri);
     console.log(`✅ MongoDB Connected: ${conn.connection.host}`);
