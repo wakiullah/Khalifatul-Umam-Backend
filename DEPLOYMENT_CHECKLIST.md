@@ -113,8 +113,9 @@ Your Live Backend URL: https://backend2-xxxx.onrender.com (after deployment)
    - Netlify.com (alternative)
 
 2. **Frontend এ Backend URL Add করুন:**
+
    ```javascript
-   const API_URL = "https://backend2-xxxx.onrender.com/api/v1"
+   const API_URL = "https://backend2-xxxx.onrender.com/api/v1";
    ```
 
 3. **CORS Update করুন:**
@@ -132,14 +133,17 @@ Your Live Backend URL: https://backend2-xxxx.onrender.com (after deployment)
 ## 💡 Pro Tips
 
 ### Keep Render Service Awake:
+
 Free plan এ 15 min inactive হলে sleep mode এ যায়। [UptimeRobot](https://uptimerobot.com) দিয়ে 5 মিনিট interval এ ping করতে পারেন।
 
 ### Monitor Your App:
+
 - Render Dashboard → Logs (real-time)
 - Render Dashboard → Metrics (CPU, Memory)
 - MongoDB Atlas → Monitoring
 
 ### Auto Deploy:
+
 GitHub এ push করলেই automatically deploy হবে! 🎉
 
 ```bash

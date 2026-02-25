@@ -7,12 +7,14 @@
 ## 📋 Pre-requisites (যা যা লাগবে)
 
 ### ✅ আপনার project এ ইতিমধ্যে আছে:
+
 - ✅ `.gitignore` file
 - ✅ `package.json` with build & start scripts
 - ✅ `render.yaml` configuration
 - ✅ TypeScript build setup
 
 ### 🔲 আপনার যা দরকার:
+
 1. **GitHub Account** - [github.com](https://github.com) এ signup করুন
 2. **MongoDB Atlas Account** - [mongodb.com/cloud/atlas](https://www.mongodb.com/cloud/atlas/register) এ signup করুন
 3. **Render.com Account** - [render.com](https://render.com) এ signup করুন (GitHub দিয়ে signup করলে সহজ হবে)
@@ -123,6 +125,7 @@ git push -u origin main
 নিচের তথ্য fill up করুন:
 
 **Basic Information:**
+
 - **Name:** `backend2` (বা যেকোনো unique নাম)
 - **Region:** Singapore (বা কাছের region)
 - **Branch:** `main`
@@ -130,16 +133,18 @@ git push -u origin main
 - **Runtime:** `Node`
 
 **Build & Deploy:**
-- **Build Command:** 
+
+- **Build Command:**
   ```
   npm install && npm run build
   ```
-- **Start Command:** 
+- **Start Command:**
   ```
   npm run prod
   ```
 
 **Instance Type:**
+
 - **Free** select করুন ✅
 
 ### ৩.৪ Environment Variables Add করুন
@@ -157,11 +162,13 @@ PORT=10000
 ```env
 DATABASE_URL=mongodb+srv://backend2user:yourpassword@cluster0.xxxxx.mongodb.net/backend2?retryWrites=true&w=majority
 ```
+
 **(⚠️ এখানে MongoDB Atlas থেকে পাওয়া connection string বসান!)**
 
 ```env
 JWT_SECRET=your_super_secret_jwt_key_here_min_32_characters_long
 ```
+
 **(⚠️ একটি strong random string বসান, যেমন: `kj34h5k2j34h5kj234h5kjh2345kjh234`)**
 
 ```env
@@ -179,6 +186,7 @@ JWT_EXPIRES_IN=7d
 ## ⏳ Step 4: Build & Deploy হওয়ার জন্য অপেক্ষা করুন
 
 ### Build Process:
+
 1. Render আপনার GitHub repository clone করবে
 2. `npm install` run করবে (সব dependencies install করবে)
 3. `npm run build` run করবে (TypeScript compile হবে)
@@ -189,6 +197,7 @@ JWT_EXPIRES_IN=7d
 ### Build Success হলে:
 
 Dashboard এ আপনি দেখবেন:
+
 - ✅ **Status:** Live (সবুজ dot)
 - ✅ **URL:** `https://backend2-xxxx.onrender.com`
 
@@ -199,11 +208,13 @@ Dashboard এ আপনি দেখবেন:
 ### ৫.১ Browser থেকে Test করুন
 
 আপনার Render URL browser এ open করুন:
+
 ```
 https://backend2-xxxx.onrender.com
 ```
 
 আপনি দেখবেন:
+
 ```
 Server is running with TypeScript & Mongoose! 🚀
 ```
@@ -217,6 +228,7 @@ GET https://backend2-xxxx.onrender.com/api/v1/public/posts
 ```
 
 অথবা **Terminal থেকে:**
+
 ```bash
 curl https://backend2-xxxx.onrender.com/api/v1/public/posts
 ```
@@ -249,7 +261,8 @@ Render dashboard এ automatically নতুন build start হবে।
 ### ❌ Application Error / Crash
 
 **Cause:** Environment variables missing
-**Solution:** 
+**Solution:**
+
 1. Render dashboard → আপনার service
 2. **Environment** tab → সব variables আছে কিনা check করুন
 3. **Manual Deploy → Clear build cache & deploy**
@@ -258,6 +271,7 @@ Render dashboard এ automatically নতুন build start হবে।
 
 **Cause:** MongoDB connection string ভুল বা network access block
 **Solution:**
+
 1. MongoDB Atlas → **Network Access** → 0.0.0.0/0 allow করুন
 2. Connection string ভালোভাবে check করুন
 3. Password এ special character থাকলে URL encode করুন
@@ -266,6 +280,7 @@ Render dashboard এ automatically নতুন build start হবে।
 
 **Cause:** Server start হয়নি বা crash করছে
 **Solution:**
+
 1. Render → **Logs** tab open করুন
 2. Error message দেখুন
 3. `PORT` environment variable check করুন
@@ -295,6 +310,7 @@ Render dashboard এ automatically নতুন build start হবে।
 ### 1️⃣ Custom Domain যোগ করুন (Optional)
 
 Render free plan এ custom domain support করে:
+
 1. **Settings** → **Custom Domain**
 2. আপনার domain add করুন
 3. DNS settings update করুন
@@ -305,14 +321,16 @@ Render free plan এ custom domain support করে:
 
 ```typescript
 // src/app.ts
-app.use(cors({
-  origin: [
-    "http://localhost:3000",
-    "https://your-frontend.vercel.app",
-    "https://backend2-xxxx.onrender.com"
-  ],
-  credentials: true
-}));
+app.use(
+  cors({
+    origin: [
+      "http://localhost:3000",
+      "https://your-frontend.vercel.app",
+      "https://backend2-xxxx.onrender.com",
+    ],
+    credentials: true,
+  }),
+);
 ```
 
 ### 3️⃣ Health Check Endpoint
@@ -332,6 +350,7 @@ Free plan এ 15 মিনিট inactivity তে sleep mode এ চলে য�
 আপনার backend successfully Render.com এ deploy হয়েছে! 🚀
 
 **Next Steps:**
+
 1. ✅ Frontend deploy করুন (Vercel/Netlify তে)
 2. ✅ Frontend থেকে এই backend URL connect করুন
 3. ✅ Testing করুন
@@ -342,6 +361,7 @@ Free plan এ 15 মিনিট inactivity তে sleep mode এ চলে য�
 ## 📞 Support
 
 যদি কোনো সমস্যা হয়:
+
 1. **Render Docs:** [render.com/docs](https://render.com/docs)
 2. **MongoDB Docs:** [mongodb.com/docs/atlas](https://www.mongodb.com/docs/atlas/)
 3. **Community:** [community.render.com](https://community.render.com)
