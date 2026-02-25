@@ -29,7 +29,6 @@ const flexiblePublicMiddleware = (req: Request, res: Response, next: NextFunctio
   const path = req.path;
   const isOpinions = path.includes('/opinions');
   const isMember = path.includes('/members');
-  console.log(path,req.method);
   
   if ((isOpinions || isMember) && req.method === 'POST' ) {
     return next();

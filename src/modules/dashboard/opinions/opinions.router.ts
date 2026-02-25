@@ -1,5 +1,6 @@
 import express from 'express';
 import {
+  createOpinion,
   getAllOpinions,
   updateOpinionStatus,
   deleteOpinion
@@ -9,7 +10,8 @@ const router = express.Router();
 
 // Get all opinions (with optional approval status filter)
 router.route('/')
-  .get(getAllOpinions);
+  .get(getAllOpinions)
+  .post(createOpinion);
 
 // Update opinion approval status and delete
 router.route('/:id')
